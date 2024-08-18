@@ -30,13 +30,13 @@ public class Movement : MonoBehaviour
     void ProcessRotation() 
     {
         //Rotate Rocket
-        if (Input.GetKey(KeyCode.D ) && !Input.GetKey(KeyCode.A))
-        {
-            ApplyRotation(-rotateThrust);
-        }
-        else if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) 
+        if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
         {
             ApplyRotation(rotateThrust);
+        }
+        else if ( Input.GetKey(KeyCode.D ) && !Input.GetKey(KeyCode.A)) 
+        {
+            ApplyRotation(-rotateThrust);
         }
     }
 
