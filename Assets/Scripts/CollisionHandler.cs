@@ -11,7 +11,7 @@ public class CollisionHandler : MonoBehaviour
                 Debug.Log("This is safe");
                 break;
             case "Finish":
-                Debug.Log("You have completed the level");
+                LoadNextLevel();
                 break;
             case "Fuel":
                 Debug.Log("Rocket Refueld");
@@ -21,9 +21,20 @@ public class CollisionHandler : MonoBehaviour
                 break;
         }
     }
-    static void ReloadLevel()
+    private void LoadNextLevel()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
+        if (nextSceneIndex == SceneManager.sceneCountInBuildSettings) 
+        {
+            nextSceneIndex = 0;
+        }
+        SceneManager.LoadScene(nextSceneIndex);
+    }
+
+    private void ReloadLevel()
+    {     
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;   
         SceneManager.LoadScene(currentSceneIndex);
     }
 }
