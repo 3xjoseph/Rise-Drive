@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {   
@@ -16,9 +17,13 @@ public class CollisionHandler : MonoBehaviour
                 Debug.Log("Rocket Refueld");
                 break;
             default:
-                Debug.Log("Game Over");
+                ReloadLevel();
                 break;
-         }
-
+        }
+    }
+    static void ReloadLevel()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
     }
 }
