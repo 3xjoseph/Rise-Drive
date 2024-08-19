@@ -4,7 +4,18 @@ using UnityEngine.SceneManagement;
 public class CollisionHandler : MonoBehaviour
 {   
     int currentSceneIndex;
+
     [SerializeField] float delayInSeconds;
+    [SerializeField] AudioClip rocketCrash;
+    [SerializeField] AudioClip levelSuccess;
+
+    AudioSource audioSource;
+
+    void Start() 
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     void OnCollisionEnter(Collision other) 
     {
          switch (other.gameObject.tag)
@@ -13,10 +24,7 @@ public class CollisionHandler : MonoBehaviour
                 Debug.Log("This is safe");
                 break;
             case "Finish":
-                StartSuccessSequence();
-                break;
-            case "Fuel":
-                Debug.Log("Rocket Refueld");
+                StartSuccessSequence();                
                 break;
             default:
                 StartCrashSequence();
@@ -24,26 +32,27 @@ public class CollisionHandler : MonoBehaviour
         }
     }
 
-    private void StartCrashSequence()
+    void StartCrashSequence()
     {
         //TODO: Particle FX
-        // TODO: ADD SFX for Crash
+        audioSource.PlayOneShot(rocketCrash);
         GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", delayInSeconds);
     }
 
-    private void ReloadLevel()
+    void ReloadLevel()
     {     
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;   
         SceneManager.LoadScene(currentSceneIndex);
     }
 
-    private void StartSuccessSequence() 
+    void StartSuccessSequence() 
     {
+        audioSource.PlayOneShot(levelSuccess);
         GetComponent<Movement>().enabled = false;
         Invoke("LoadNextLevel", delayInSeconds);
     }
-    private void LoadNextLevel()
+    void LoadNextLevel()
     {
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int nextSceneIndex = currentSceneIndex + 1;

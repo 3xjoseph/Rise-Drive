@@ -123,6 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainThrust: 1000
   rotateThrust: 100
+  rocketThrust: {fileID: 8300000, guid: 541a5a95906543f4899cfc8427243ecc, type: 3}
 --- !u!54 &3406029471734219685
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -259,3 +260,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayInSeconds: 1
+  rocketCrash: {fileID: 8300000, guid: 057d57d98fd6d9348a8030cca5d78390, type: 3}
+  levelSuccess: {fileID: 8300000, guid: 5e5d792c7299c0640afeac320bf94551, type: 3}
