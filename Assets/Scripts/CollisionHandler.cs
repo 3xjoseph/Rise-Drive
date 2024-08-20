@@ -3,11 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {   
-    int currentSceneIndex;
-
     [SerializeField] float delayInSeconds;
     [SerializeField] AudioClip rocketCrash;
     [SerializeField] AudioClip levelSuccess;
+
+    int currentSceneIndex;
+    bool isTransitioning = false;
 
     AudioSource audioSource;
 
@@ -18,6 +19,7 @@ public class CollisionHandler : MonoBehaviour
 
     void OnCollisionEnter(Collision other) 
     {
+        if (isTransitioning) { return; }
          switch (other.gameObject.tag)
          {
             case "Friendly":
@@ -35,6 +37,8 @@ public class CollisionHandler : MonoBehaviour
     void StartCrashSequence()
     {
         //TODO: Particle FX
+        isTransitioning = true;
+        audioSource.Stop();
         audioSource.PlayOneShot(rocketCrash);
         GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", delayInSeconds);
@@ -48,6 +52,8 @@ public class CollisionHandler : MonoBehaviour
 
     void StartSuccessSequence() 
     {
+        isTransitioning = true;
+        audioSource.Stop();
         audioSource.PlayOneShot(levelSuccess);
         GetComponent<Movement>().enabled = false;
         Invoke("LoadNextLevel", delayInSeconds);
