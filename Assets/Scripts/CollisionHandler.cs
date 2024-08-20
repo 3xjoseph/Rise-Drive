@@ -4,12 +4,15 @@ using UnityEngine.SceneManagement;
 public class CollisionHandler : MonoBehaviour
 {   
     [SerializeField] float delayInSeconds;
+    //Audio Clip for getting specific audio
     [SerializeField] AudioClip rocketCrash;
     [SerializeField] AudioClip levelSuccess;
+    //Particle System for getting specific Particle Prefab
     [SerializeField] ParticleSystem particleCrash;
-    [SerializeField] ParticleSystem particleSuccess;
+    [SerializeField] ParticleSystem particleSuccess;    
 
     int currentSceneIndex;
+    // Bool variable for State
     bool isTransitioning = false;
 
     AudioSource audioSource;
