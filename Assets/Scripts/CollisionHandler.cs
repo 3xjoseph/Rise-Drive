@@ -14,6 +14,7 @@ public class CollisionHandler : MonoBehaviour
     int currentSceneIndex;
     // Bool variable for State
     bool isTransitioning = false;
+    bool collisionsDisabled = false;
 
     AudioSource audioSource;
 
@@ -22,9 +23,26 @@ public class CollisionHandler : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    void Update() 
+    {
+        //CheatKeys();
+    }
+
+    void CheatKeys()
+    {
+        if(Input.GetKey(KeyCode.L)) 
+        {
+            LoadNextLevel();
+        }
+        else if(Input.GetKey(KeyCode.C))
+        {
+            collisionsDisabled = !collisionsDisabled;
+        }
+    }
+
     void OnCollisionEnter(Collision other) 
     {
-        if (isTransitioning) { return; }
+        if (isTransitioning || collisionsDisabled) { return; }
          switch (other.gameObject.tag)
          {
             case "Friendly":

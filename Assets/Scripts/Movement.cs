@@ -1,4 +1,6 @@
+using System.Data.Common;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -16,11 +18,13 @@ public class Movement : MonoBehaviour
 
     Rigidbody myRigidbody;
     AudioSource audioSource;
+    Collider collisions;
 
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        collisions = GetComponent<Collider>();
     }
 
     void Update()
