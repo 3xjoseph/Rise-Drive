@@ -6,6 +6,7 @@ public class QuitApplication : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
+            // Quits the applicaition
             Application.Quit();
             Debug.Log("You have exited the game");
         }
