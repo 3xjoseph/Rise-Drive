@@ -1,5 +1,5 @@
 # Rise-Drive
-Links: [https://sharemygame.com/@3xjoseph/rise-drive](https://play.unity.com/en/games/e74505c1-4f16-4446-991d-238126133483/rise-drive)
+Links: https://play.unity.com/en/games/e74505c1-4f16-4446-991d-238126133483/rise-drive
 
 Install: https://www.mediafire.com/file/1am3iwtecv55kmj/Rise_Drive.exe/file
 
